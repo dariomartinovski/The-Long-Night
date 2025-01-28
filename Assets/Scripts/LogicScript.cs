@@ -4,12 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Globalization;
+using System.Diagnostics;
 
 public class LogicScript : MonoBehaviour
 {
     public int CurretnLives = 5;
     public int Score = 0;
     public int XP = 0;
+    public int Level = 1;
 
     private bool GamePaused = false;
     private bool GameActive = false;
@@ -19,7 +22,8 @@ public class LogicScript : MonoBehaviour
     public Text EnemiesKilled;
     public Text HighScore;
     public Text StartScreenHighScore;
-
+    public Text LevelDisplay;
+    
     public GameObject GameFinishedScreen;
     public GameObject gameWonScreen;
     public GameObject gameLostScreen;
@@ -34,6 +38,8 @@ public class LogicScript : MonoBehaviour
         SetKillsCounter();
         StartScreenHighScore.text = "High score: " + PlayerPrefs.GetInt("HighScore").ToString();
         SetMaxXP(20);
+        LevelDisplay.text = "Level: " + Level.ToString();
+
     }
 
     public void Update()
@@ -114,6 +120,13 @@ public class LogicScript : MonoBehaviour
     {
         XP++;
         slider.value = XP;
+        if(XP > slider.maxValue)
+        {
+            XP = 0;
+            slider.value = 0;
+            Level++;
+            LevelDisplay.text = "Level: " + Level.ToString();
+        }
     }
 
     public void DisplayInfo()
