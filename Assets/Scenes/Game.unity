@@ -844,7 +844,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 404.9}
+  m_AnchoredPosition: {x: 151, y: 348.38}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &408934789
@@ -1087,7 +1087,7 @@ Transform:
   m_GameObject: {fileID: 492578369}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.64, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -38518,7 +38518,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -660, y: 304}
+  m_AnchoredPosition: {x: -698.00006, y: 252}
   m_SizeDelta: {x: 500, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &697082700
@@ -39293,7 +39293,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -641.7, y: 400}
+  m_AnchoredPosition: {x: -698, y: 353.57}
   m_SizeDelta: {x: 500, y: 59.14}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1073644587
@@ -40131,7 +40131,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -145.8}
+  m_AnchoredPosition: {x: -16, y: -145}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1382235951
@@ -40548,8 +40548,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -783.68, y: -117}
-  m_SizeDelta: {x: 216.03, y: 61.25}
+  m_AnchoredPosition: {x: -461, y: 344.09}
+  m_SizeDelta: {x: 216.03, y: 69.825}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1634539379
 MonoBehaviour:
@@ -41655,12 +41655,13 @@ MonoBehaviour:
   CurretnLives: 5
   Score: 0
   XP: 0
-  Level: 0
+  Level: 1
   ScoreDisplay: {fileID: 1066087417}
   TotalScore: {fileID: 836583369}
   EnemiesKilled: {fileID: 816824639}
   HighScore: {fileID: 1283959112}
   StartScreenHighScore: {fileID: 968635458}
+  LevelDisplay: {fileID: 1634539379}
   GameFinishedScreen: {fileID: 725205450}
   gameWonScreen: {fileID: 1818171857}
   gameLostScreen: {fileID: 2090954005}
