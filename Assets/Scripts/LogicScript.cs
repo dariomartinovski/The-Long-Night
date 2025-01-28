@@ -13,6 +13,8 @@ public class LogicScript : MonoBehaviour
     public int Score = 0;
     public int XP = 0;
     public int Level = 1;
+    public int CurrentNeededXPForLevel = 20;
+    private const int XP_RATE_INCREASE = 2;
 
     private bool GamePaused = false;
     private bool GameActive = false;
@@ -23,6 +25,7 @@ public class LogicScript : MonoBehaviour
     public Text HighScore;
     public Text StartScreenHighScore;
     public Text LevelDisplay;
+    public Text CurrentXPLabel;
     
     public GameObject GameFinishedScreen;
     public GameObject gameWonScreen;
@@ -37,9 +40,9 @@ public class LogicScript : MonoBehaviour
         PlayerPrefs.SetInt("HighScore", Math.Max(PlayerPrefs.GetInt("HighScore"), 0));
         SetKillsCounter();
         StartScreenHighScore.text = "High score: " + PlayerPrefs.GetInt("HighScore").ToString();
-        SetMaxXP(20);
-        LevelDisplay.text = "Level: " + Level.ToString();
-
+        SetMaxXP(CurrentNeededXPForLevel);
+        SetLevel();
+        SetCurrentXPLabel();
     }
 
     public void Update()
@@ -71,6 +74,16 @@ public class LogicScript : MonoBehaviour
 
     public void SetKillsCounter() {
         ScoreDisplay.text = "Score: " + Score.ToString();
+    }
+
+    public void SetLevel()
+    {
+        LevelDisplay.text = "Level: " + Level.ToString();
+    }
+
+    public void SetCurrentXPLabel()
+    {
+        CurrentXPLabel.text = String.Format("{0}/{1}", XP, CurrentNeededXPForLevel);
     }
 
     public void GameOver()
@@ -120,13 +133,16 @@ public class LogicScript : MonoBehaviour
     {
         XP++;
         slider.value = XP;
-        if(XP > slider.maxValue)
+        if(XP >= slider.maxValue)
         {
             XP = 0;
             slider.value = 0;
             Level++;
-            LevelDisplay.text = "Level: " + Level.ToString();
+            SetLevel();
+            CurrentNeededXPForLevel += XP_RATE_INCREASE;
+            SetMaxXP(CurrentNeededXPForLevel);
         }
+        SetCurrentXPLabel();
     }
 
     public void DisplayInfo()
