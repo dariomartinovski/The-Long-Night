@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public HealthBarController HealthBar;
     public GameObject RiflePivot;
     public GameObject Rifle;
+    public AudioManager AudioManager;
 
     //Player
     private float MoveSpeed = 4;
@@ -39,6 +40,7 @@ public class PlayerController : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         Logic = GameObject.FindGameObjectWithTag("LogicManager").GetComponent<LogicScript>();
         HealthBar = GameObject.FindGameObjectWithTag("HealthBar").GetComponent<HealthBarController>();
+        AudioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         animator = gameObject.GetComponent<Animator>();
     }
 
@@ -124,6 +126,7 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(int num = 1)
     {
+        AudioManager.PlaySFX(AudioManager.heroHit);
         CurrentLives -= num;
         for (int i = 0; i < num; i++)
         {
@@ -144,6 +147,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Shoot() {
+        AudioManager.PlaySFX(AudioManager.shoot);
         Instantiate(BulletPrefab, FiringPoint.position, FiringPoint.rotation);
     }
 }

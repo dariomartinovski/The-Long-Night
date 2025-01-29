@@ -11,6 +11,8 @@ TagManager:
   - Boss
   - Undefined
   - CoinBag
+  - Timer
+  - Audio
   layers:
   - Default
   - TransparentFX
@@ -19,9 +21,9 @@ TagManager:
   - Water
   - UI
   - Hero
+  - Boss
   - Enemy
   - Walls
-  - 
   - 
   - 
   - 
@@ -47,6 +49,15 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 4247804625
+    locked: 0
+  - name: Foreground
+    uniqueID: 439015169
+    locked: 0
+  - name: UI
+    uniqueID: 588285619
     locked: 0
   m_RenderingLayers:
   - Default

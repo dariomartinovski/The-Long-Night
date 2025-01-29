@@ -1,11 +1,8 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using System.Globalization;
-using System.Diagnostics;
+
 
 public class LogicScript : MonoBehaviour
 {
@@ -17,7 +14,7 @@ public class LogicScript : MonoBehaviour
     private const int XP_RATE_INCREASE = 2;
 
     private int BossHitCount = 0;
-    private const int MaxBossHits = 20;
+    private const int MaxBossHits = 50;
 
     private bool GamePaused = false;
     private bool GameActive = false;
@@ -46,7 +43,6 @@ public class LogicScript : MonoBehaviour
         SetMaxXP(CurrentNeededXPForLevel);
         SetLevel();
         SetCurrentXPLabel();
-        int BossHitCount = 0;
     }
 
     public void Update()
@@ -79,8 +75,6 @@ public class LogicScript : MonoBehaviour
     public Boolean IncreaseBossHitCount()
     {
         BossHitCount++;
-        UnityEngine.Debug.Log(BossHitCount);
-
         if (BossHitCount >= MaxBossHits)
         {
             BossHitCount = 0;

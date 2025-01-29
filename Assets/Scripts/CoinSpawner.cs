@@ -22,7 +22,6 @@ public class CoinSpawner : MonoBehaviour
     {
         GameObject coinToSpawn = BossCoins;
         Instantiate(coinToSpawn, position, Quaternion.identity);
-
     }
 }
 

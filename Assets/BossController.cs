@@ -5,13 +5,16 @@ public class BossController : MonoBehaviour
 {
     public GameObject Player;
     public LogicScript Logic;
+    public TimerController Timer;
+
     private Rigidbody2D rb;
     private Animator animator; 
     // Enemy attributes
-    private float moveSpeed = 2.2f;
+    private float MoveSpeed = 2.2f;
 
     // Flip logic
     private bool isFacingRight = true;
+    private bool SpawnTimePassed = false;
 
 
     void Start()
@@ -19,6 +22,7 @@ public class BossController : MonoBehaviour
         // Initialize references
         Logic = GameObject.FindGameObjectWithTag("LogicManager").GetComponent<LogicScript>();
         Player = GameObject.FindWithTag("Player");
+        Timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<TimerController>();
         rb = gameObject.GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
@@ -26,17 +30,31 @@ public class BossController : MonoBehaviour
     void Update()
     {
         // Ensure the game is active and not paused
-        if (Logic.IsGameActive() && !Logic.PausedGame())
+        if (Logic.IsGameActive() && !Logic.PausedGame() && HasSpawnTimePassed())
         {
             MoveTowardsPlayer();
             FlipSprite();
             animator.Play("Walk");
         }
+        else
+        {
+            rb.linearVelocity = Vector2.zero;
+            animator.Play("Idle");
+        }
+    }
+
+    public bool HasSpawnTimePassed()
+    {
+        if (!SpawnTimePassed)
+        {
+            SpawnTimePassed = Timer.GetCurrentTimeInSeconds() < 585;
+        }
+        return SpawnTimePassed;
     }
 
     private void MoveTowardsPlayer()
     {
-        rb.linearVelocity = (Player.transform.position - transform.position).normalized * moveSpeed;
+        rb.linearVelocity = (Player.transform.position - transform.position).normalized * MoveSpeed;
     }
 
     private void FlipSprite()
@@ -57,7 +75,7 @@ public class BossController : MonoBehaviour
     {
         isFacingRight = !isFacingRight;
         Vector3 localScale = transform.localScale;
-        localScale.x *= -1; // Invert the x-axis
+        localScale.x *= -1;
         transform.localScale = localScale;
     }
 
@@ -72,7 +90,7 @@ public class BossController : MonoBehaviour
             if (playerController != null)
             {
                 //TODO add collision sound
-                playerController.TakeDamage(2); // Example: Reduce hero's lives by 2
+                playerController.TakeDamage(2);
             }
         }
     }
