@@ -16,6 +16,9 @@ public class LogicScript : MonoBehaviour
     public int CurrentNeededXPForLevel = 20;
     private const int XP_RATE_INCREASE = 2;
 
+    private int BossHitCount = 0;
+    private const int MaxBossHits = 20;
+
     private bool GamePaused = false;
     private bool GameActive = false;
 
@@ -43,6 +46,7 @@ public class LogicScript : MonoBehaviour
         SetMaxXP(CurrentNeededXPForLevel);
         SetLevel();
         SetCurrentXPLabel();
+        int BossHitCount = 0;
     }
 
     public void Update()
@@ -67,9 +71,22 @@ public class LogicScript : MonoBehaviour
         ScoreDisplay.text = CurretnLives.ToString();
     }
 
-    public void Hit() {
-        Score++;
+    public void Hit(Boolean isBoss=false) {
+        Score += isBoss ? 50 : 1;
         SetKillsCounter();
+    }
+
+    public Boolean IncreaseBossHitCount()
+    {
+        BossHitCount++;
+        UnityEngine.Debug.Log(BossHitCount);
+
+        if (BossHitCount >= MaxBossHits)
+        {
+            BossHitCount = 0;
+            return true;
+        }
+        return false;
     }
 
     public void SetKillsCounter() {
@@ -129,9 +146,9 @@ public class LogicScript : MonoBehaviour
         slider.value = 0;
     }
 
-    public void IncreaseXP()
+    public void IncreaseXP(Boolean isBoss=false)
     {
-        XP++;
+        XP += isBoss ? 10 : 1;
         slider.value = XP;
         if(XP >= slider.maxValue)
         {

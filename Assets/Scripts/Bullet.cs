@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -40,6 +41,23 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
             //Set Kill Count (Score)
             Logic.Hit();
+        }
+       else if (Other.CompareTag("Boss"))
+        {
+            Boolean isBossKilled = Logic.IncreaseBossHitCount();
+            if (isBossKilled)
+            {
+
+                Vector2 enemyPosition = Other.transform.position;
+                // Spawn coin at the enemy's position
+                CoinSpawner.BossSpawnCoin(enemyPosition);
+                //Enemy
+                Destroy(Other.gameObject);
+                //Bullet
+                Destroy(gameObject);
+                Logic.Hit(true);
+
+            }
         }
     }
 }

@@ -1,24 +1,25 @@
 using UnityEngine;
+using System.Collections;
 
 public class BossController : MonoBehaviour
 {
     public GameObject Player;
     public LogicScript Logic;
     private Rigidbody2D rb;
-    private Animator animator;
-
+    private Animator animator; 
     // Enemy attributes
     private float moveSpeed = 2.2f;
 
     // Flip logic
     private bool isFacingRight = true;
 
+
     void Start()
     {
         // Initialize references
         Logic = GameObject.FindGameObjectWithTag("LogicManager").GetComponent<LogicScript>();
         Player = GameObject.FindWithTag("Player");
-        rb = GetComponent<Rigidbody2D>();
+        rb = gameObject.GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
 
@@ -58,5 +59,21 @@ public class BossController : MonoBehaviour
         Vector3 localScale = transform.localScale;
         localScale.x *= -1; // Invert the x-axis
         transform.localScale = localScale;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            // Handle collision with the player
+            // Reduce hero's health or trigger an attack
+            // You can access the hero's script or health component and call appropriate functions
+            PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
+            if (playerController != null)
+            {
+                //TODO add collision sound
+                playerController.TakeDamage(2); // Example: Reduce hero's lives by 2
+            }
+        }
     }
 }

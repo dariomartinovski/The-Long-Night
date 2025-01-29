@@ -1,9 +1,11 @@
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using UnityEngine;
 
 public class CoinSpawner : MonoBehaviour
 {
     public List<GameObject> Coins;
+    public GameObject BossCoins;
 
     public void SpawnCoin(Vector2 position)
     {
@@ -15,6 +17,12 @@ public class CoinSpawner : MonoBehaviour
             Instantiate(coinToSpawn, position, Quaternion.identity);
             //Instantiate(coinToSpawn, position, transform.rotation);
         }
+    }
+    public void BossSpawnCoin(Vector2 position)
+    {
+        GameObject coinToSpawn = BossCoins;
+        Instantiate(coinToSpawn, position, Quaternion.identity);
+
     }
 }
 

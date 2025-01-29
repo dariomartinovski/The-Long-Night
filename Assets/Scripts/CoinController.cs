@@ -15,11 +15,18 @@ public class CoinController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            string coinTag = gameObject.tag;
             PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
             if (playerController != null)
             {
-                Logic.IncreaseXP();
-                Destroy(gameObject);
+                if(!string.IsNullOrEmpty(coinTag) && coinTag.Equals("CoinBag")) {
+                    Logic.IncreaseXP(true);
+                }
+                else
+                {
+                    Logic.IncreaseXP();
+                }
+                    Destroy(gameObject);
             }
         }
     }

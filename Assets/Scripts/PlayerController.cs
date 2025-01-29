@@ -125,7 +125,10 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(int num = 1)
     {
         CurrentLives -= num;
-        HealthBar.RemoveHeart();
+        for (int i = 0; i < num; i++)
+        {
+            HealthBar.RemoveHeart();
+        }
     }
 
     public void ChangeAnimationState(string newState)

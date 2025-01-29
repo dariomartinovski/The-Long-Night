@@ -8,6 +8,9 @@ TagManager:
   - HealthBar
   - Enemy
   - CoinSpawner
+  - Boss
+  - Undefined
+  - CoinBag
   layers:
   - Default
   - TransparentFX
