@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Globalization;
 
 
 public class LogicScript : MonoBehaviour
@@ -26,6 +27,7 @@ public class LogicScript : MonoBehaviour
     public Text StartScreenHighScore;
     public Text LevelDisplay;
     public Text CurrentXPLabel;
+    public Text LevelFinal;
     
     public GameObject GameFinishedScreen;
     public GameObject gameWonScreen;
@@ -166,6 +168,7 @@ public class LogicScript : MonoBehaviour
         
         TotalScore.text = "Score: " + (Score * 10).ToString();
         EnemiesKilled.text = "Total enemies killed: " + Score.ToString();
+        LevelFinal.text = "Level: " + Level.ToString();
         HighScore.text = "High score: " + PlayerPrefs.GetInt("HighScore").ToString();
 
         /*PlayerController player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
