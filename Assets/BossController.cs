@@ -6,9 +6,11 @@ public class BossController : MonoBehaviour
     public GameObject Player;
     public LogicScript Logic;
     public TimerController Timer;
+    public GameObject HealthBar;
 
     private Rigidbody2D rb;
     private Animator animator; 
+
     // Enemy attributes
     private float MoveSpeed = 2.2f;
 
@@ -23,6 +25,7 @@ public class BossController : MonoBehaviour
         Logic = GameObject.FindGameObjectWithTag("LogicManager").GetComponent<LogicScript>();
         Player = GameObject.FindWithTag("Player");
         Timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<TimerController>();
+        HealthBar = GameObject.FindWithTag("BossHealthBar");
         rb = gameObject.GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
@@ -74,9 +77,15 @@ public class BossController : MonoBehaviour
     private void Flip()
     {
         isFacingRight = !isFacingRight;
+
         Vector3 localScale = transform.localScale;
         localScale.x *= -1;
         transform.localScale = localScale;
+
+
+        Vector3 healthBarScale = HealthBar.transform.localScale;
+        healthBarScale.x *= -1;
+        HealthBar.transform.localScale = healthBarScale;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

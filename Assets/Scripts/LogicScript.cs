@@ -13,7 +13,7 @@ public class LogicScript : MonoBehaviour
     public int Level = 1;
     public int CurrentNeededXPForLevel = 20;
     private const int XP_RATE_INCREASE = 2;
-
+    
     private int BossHitCount = 0;
     private const int MaxBossHits = 50;
 
@@ -27,6 +27,7 @@ public class LogicScript : MonoBehaviour
     public Text StartScreenHighScore;
     public Text LevelDisplay;
     public Text CurrentXPLabel;
+    public Text CurrentBossHealthLabel;
     public Text LevelFinal;
     
     public GameObject GameFinishedScreen;
@@ -35,6 +36,7 @@ public class LogicScript : MonoBehaviour
     public GameObject gamePausedScreen;
     public GameObject startGameScreen;
     public Slider slider;
+    public Slider healthBarSlider;
 
     private bool SomethingDispalyed = false;
 
@@ -45,6 +47,8 @@ public class LogicScript : MonoBehaviour
         SetMaxXP(CurrentNeededXPForLevel);
         SetLevel();
         SetCurrentXPLabel();
+        healthBarSlider.maxValue = MaxBossHits;
+        healthBarSlider.value = MaxBossHits;
     }
 
     public void Update()
@@ -77,6 +81,7 @@ public class LogicScript : MonoBehaviour
     public Boolean IncreaseBossHitCount()
     {
         BossHitCount++;
+        SetCurrentBossHealth();
         if (BossHitCount >= MaxBossHits)
         {
             BossHitCount = 0;
@@ -97,6 +102,13 @@ public class LogicScript : MonoBehaviour
     public void SetCurrentXPLabel()
     {
         CurrentXPLabel.text = String.Format("{0}/{1}", XP, CurrentNeededXPForLevel);
+    }
+
+    public void SetCurrentBossHealth()
+    {
+        int CurrentBossHealth = MaxBossHits - BossHitCount;
+        healthBarSlider.value = CurrentBossHealth;
+        CurrentBossHealthLabel.text = String.Format("{0}/{1}", CurrentBossHealth, MaxBossHits);
     }
 
     public void GameOver()
